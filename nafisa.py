@@ -3,6 +3,7 @@ import numpy as np
 import datetime
 from utils.clean_data import DataClean
 from utils.visualization import DrawFigure
+import os
 
 def count_question(msg_data,name_1,name_2):
     msg_data['chat_time'] = pd.to_datetime(msg_data['chat_time'])
@@ -88,9 +89,13 @@ def count_by_period(msg_data,count_params,name_1,name_2):
 
 if __name__ == '__main__':
     #Open file and cleaning data
-    filename = '' #change into f
+    filename = 'sample_text.txt' #change into f
     msg_data = pd.read_csv(filename, sep="\t", header=None, names=['chat_time','name','message']).applymap(str)
     msg_data = DataClean().clean_dataframe(msg_data)
+
+    #Create Folder images if not exist
+    if not os.path.exists('images'):
+        os.makedirs('images')
 
     #Get User Name
     list_name = msg_data.name.unique()
