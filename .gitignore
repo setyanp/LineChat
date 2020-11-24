@@ -2,3 +2,5 @@
 .vscode
 *.png
 *.txt
+__pycache__/
+*.py[cod]
